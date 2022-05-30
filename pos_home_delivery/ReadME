@@ -1,0 +1,12 @@
+
+Version 14.0.0.1 : (07/12/20)
+		- Remove warnings.
+		- Solve 'Cancel' button click and 'select' button click issue of Home Delivery popup.
+		- Adjust layout of Home Delivery popup.
+		- Migrate Orderreceipt code.
+
+Version 14.0.0.2 : (08/12/20)
+		- Add validation to restrict user to pass empty value for date field.
+
+Version 14.0.0.3 : (11/02/21)	
+		- Ovderride _process_order() method and by pass 'Could not fully process the POS Order' error.

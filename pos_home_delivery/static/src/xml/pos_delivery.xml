@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="pos_order_note_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+	<!-- PosBagWidget -->
+
+	<t t-name="HomeDelivery" owl="1">
+		<div class="control-button">
+			<i class="fa fa-tag" />
+			<span> </span>
+			<span>Home Delivery</span>
+		</div>
+	</t>
+
+	<t t-name="DatetimeSelectWidget" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<div class="popup" style="height: 550px !important;">
+				<p class="title">
+					<t t-esc="props.title" />
+				</p>
+				<section>
+					<div class="body">
+						<div class="form-group" style="position:relative;display:inline;">
+							<label class="control-label">Appointment Time</label>
+							<div class='input-group date' id='del_date'>
+								<input type='text' class="form-control " />
+								<span class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="button cancel" t-on-click="cancel">
+								<t t-esc="props.cancelText" />
+							</div>
+							<div class="button select" t-on-click="select">
+								<t t-esc="props.confirmText" />
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="DeliveryOrderWidget" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup popup-confirm" style="min-height: 95%;overflow: hidden;min-width: 40% !important;">
+					<header class="title drag-handle">
+						<t t-esc="props.title" />
+					</header>
+					<main class="body">
+						<div>
+							<ul class="tabs">
+								<li class="tab">
+									<input type="radio" name="tabs" checked="checked" id="tab1" />
+									<label for="tab1" style="margin-left: 40px;margin-right: 5px;">Address </label>
+									<div id="tab-content1" class="content">
+										<h5 id="default">By Default Shipped to Selected Customer Address</h5>
+										<div class="form-group" id="form1">  
+											<input id="apply_shipping_address" class="pos_shipping_address" type="checkbox" />
+											<label for="pos_shipping_address">Ship to Different Address</label>
+										</div>
+
+										<div style="margin-top: 20px;">
+											<div id="delivery_date" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your details delivery date properly.
+											</div>
+											<div id="street" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your street details properly.
+											</div>
+											<div id="zip" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your zip details properly.
+											</div>
+											<div id="mobile" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your  mobile details properly
+											</div>
+											<div id="d_name" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your name details properly.
+											</div>
+											<div id="city" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your city details properly.'
+											</div>
+											<div id="address" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please fill your address details properly.
+											</div>
+										</div>
+
+										<div style="margin-top: 20px;position: fixed;"> 
+											<div class='delivery-detail required-field' style="    margin: 0px 5px;">
+												<span class='label' style="min-width: 85px;    margin-top: 10px;">Name</span>
+												<input class='detail d_name' name='d_name' t-att-value='name || ""' placeholder='Name' required="1" style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail required-field' style="    margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">Mobile</span>
+												<input type='text' class='detail d_mobile' name='mobile' t-att-value='mobile || ""' pattern='[0-9]' title='Only enter integer value' placeholder='9090909090' required="1" style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail' style="margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">Email</span>
+												<input  type='email' class='detail d_email' name='email' t-att-value='email || ""' placeholder='Email (Optional)' style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail required-field' style="margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">Locality</span>
+												<input class='detail d_location' name='address' t-att-value=' address || ""' placeholder='Society or Building' required="1" style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail required-field' style="margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">Street</span>
+												<input class='detail d_street' name='street' t-att-value=' street || ""' placeholder='Street' required="required" style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail' style="margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">City</span>
+												<input class='detail d_city' name='city' t-att-value='city || ""' placeholder='City/Area/Town' required="required" style="color: #000;font-size: 15px;"></input>
+											</div>
+											<div class='delivery-detail required-field' style="margin: 0px 5px;">
+												<span class='label'  style="min-width: 85px;    margin-top: 10px;">Zip</span>
+												<input type='text' class='detail d_zip' name='zip' t-att-value='zip || ""' pattern='[0-9]' placeholder='Zip Code' required="required" style="color: #000;font-size: 15px;"></input>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li class="tab">
+									<input type="radio" name="tabs" id="tab2" />
+									<label for="tab2">Other Info</label>   
+									<div id="tab-content2" class="content" style="min-width:81%;padding-bottom: 0px !important;">
+										<h4 style="margin-top: -5px;text-align: center;margin-bottom: -5px;">Other Information</h4>
+										<div style="margin-top: 10px;">
+											<div id="delivery_person" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please Select Delivery Person.
+											</div>
+											<div id="dd_date" class="alert" style="color: #ec1010; font-size: inherit; text-align: center;">
+												<span class="closebtn"></span>  
+												Please Select Delivery Date.
+											</div>
+										</div>
+										<div class='delivery-detail2 required-field' required="required" style="margin:15px 0 0 5px;">
+											<span class='label' style="padding: 10px;margin-left: -14px;">Delivery person</span>
+											<select class="detail person_id" name='person_id' required="required" style="margin-left: 55px;padding: 8px;border-radius: 5px;">
+												<option class="s_small" value=''>Set Delivery Person</option>
+												<t t-foreach='env.pos.users' t-as="person" t-key="person.id">
+													<option t-att-value='person.id' t-att-selected='person_id == person.id or None'> 
+														<t t-esc='person.name'/>
+													</option>
+												</t>
+											</select>
+										</div>
+										<div class='delivery-note' style="margin-top:16px;">
+											<textarea rows="4" cols="50" class="detail order_note" name='order_note' placeholder='Add a Order Note...' t-att-value='order_note || ""' style="color: #000;font-size: 15px;"></textarea>
+										</div>
+										<div class='delivery-detail2 required-field' style="margin-top:16px">
+											<div class="form-group" style="position:relative;display:inline;">
+												<div class='input-group date' id='dell_date'>
+													<input id="my_date" type='text' name='delivery_date' class="form-control detail" t-att-value='delivery_date || ""' required="required"/>
+													<span class="input-group-addon">
+														<span class="fa fa-calendar"></span>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</main>
+					<footer class="footer" style="bottom: 0;position: absolute;">
+						<div class="button create bi-popup-button" 
+							t-on-click="create">
+							<t t-esc="props.confirmText" />
+						</div>
+						<div class="button clear bi-popup-button " 
+							t-on-click="clear">
+							<t t-esc="props.clearText" />
+						</div>
+						<div class="button cancel bi-popup-button" 
+							t-on-click="cancel">
+							<t t-esc="props.cancelText" />
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+
+	<t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('orderlines')]" position="before">
+			<t t-if="props.order.delivery">
+				<div style="text-align: center;font-size: 125%;">Delivery Info:</div>
+				<table style="min-width:100%;font-size: 14px;">
+					<tr>
+						<td style="width: 40%;">Name: </td>
+						<td  t-if="props.order.d_name"> <t t-esc="props.order.d_name || ''"/></td>
+						<td  t-if="!props.order.d_name"> <t t-esc="props.order.get_client().name || ''"/></td>
+					</tr>
+					<tr >
+						<td>Mobile: </td>
+						<td t-if="props.order.d_name"> <t t-esc="props.order.mobile || props.order.phone || ''"/></td>
+						<td  t-if="!props.order.d_name"> <t t-esc="props.order.get_client().mobile || props.order.get_client().phone || ''"/></td>
+					</tr>
+					<tr >
+						<td>Deliver By: </td>
+						<td> <t t-esc="deliveryPerson || ''"/></td>
+					</tr>
+					<tr>
+						<td>Date: </td>
+						<td>
+							<t t-esc="hddate"/>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-bottom: 25px;">Address: </td>
+						<td t-if="props.order.d_name" style="line-height: 1;">
+							<t t-esc="props.order.address || ''"/><br />
+							<t t-esc="props.order.street || ''"/><br />
+							<t t-esc="props.order.city || ''"/>,
+							<t t-esc="props.order.zip || ''"/><br />
+						</td>
+						<td t-if="!props.order.d_name" style="line-height: 1;">
+							<t t-esc="props.order.get_client().street || ''"/><br />
+							<t t-esc="props.order.get_client().street2 || ''"/><br />
+							<t t-esc="props.order.get_client().city || ''"/>,
+							<t t-esc="props.order.get_client().zip || ''"/><br />
+						</td>
+					</tr>
+				</table>
+				<br />
+			</t>
+		</xpath>
+	</t>
+
+</templates>

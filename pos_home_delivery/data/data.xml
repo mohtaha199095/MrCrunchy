@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="delivery_charge_product" model="product.product">
+            <field name="name">Delivery Charge</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_home_delivery_charge" eval="True"/>
+            <field name="type">service</field>
+            <field name="description_sale">Delivery Charge</field>
+            
+        </record>
+
+    </data>
+</odoo>
+
