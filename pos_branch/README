@@ -1,0 +1,9 @@
+
+Version 14.0.0.1 : (08-10-21)
+issue solve:-
+	- Adding branch into invoice and picking when order is created.
+	- Issue into receipt screen so resolved this issue.
+
+Version 14.0.0.2 : (22-10-21)
+issue solve:-
+	- Issue when adding branch into picking resolved this issue.
