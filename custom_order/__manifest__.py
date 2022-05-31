@@ -11,7 +11,7 @@ Projects rehabilitation
 The Housing and Development Fund works on rehabilitating companies or factories.
     """,
     'category': 'Projects/rehailitation',
-    'depends' : ['base'],
+    'depends' : ['base','product'],
     'data': [
         'security/ir.model.access.csv',
         'views/first_task.xml',
