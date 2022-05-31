@@ -31,3 +31,10 @@ class FirstTaskLines(models.Model):
     product_id = fields.Many2one('product.product')
     qty = fields.Integer(string="Qty", default=0)
     rel_id = fields.Many2one('first.task')
+    
+class productinherit(models.Model):
+    _inherit = 'product.product'
+    
+    x_studio_is_custom_order = fields.Boolean(string="is Custom Product")
+    
+    
